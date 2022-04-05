@@ -103,13 +103,32 @@ class BinarySearchTree {
    * Return an array of visited nodes. */
 
   dfsPreOrder() {
+    let arr = []
 
+    function helper(currentNode = this.root) {
+      arr.push(currentNode.val);
+      if (currentNode.left) helper(currentNode.left);
+      if (currentNode.right) helper(currentNode.right)
+    }
+
+    helper(this.root)
+    return arr;
   }
 
   /** dfsInOrder(): Traverse the array using in-order DFS.
    * Return an array of visited nodes. */
 
   dfsInOrder() {
+    let arr = []
+
+    function helper(currentNode = this.root) {
+      if (currentNode.left) helper(currentNode.left);
+      arr.push(currentNode.val);
+      if (currentNode.right) helper(currentNode.right);
+    }
+
+    helper(this.root)
+    return arr;  
 
   }
 
@@ -117,14 +136,32 @@ class BinarySearchTree {
    * Return an array of visited nodes. */
 
   dfsPostOrder() {
+    let arr = []
 
+    function helper(currentNode = this.root) {
+      if (currentNode.left) helper(currentNode.left);
+      if (currentNode.right) helper(currentNode.right);
+      arr.push(currentNode.val);
+    }
+
+    helper(this.root)
+    return arr;
   }
 
   /** bfs(): Traverse the array using BFS.
    * Return an array of visited nodes. */
 
   bfs() {
+    let arr = [];
+    let queue = [this.root];
 
+    while (queue.length) {
+      let currentNode = queue.shift();
+      arr.push(currentNode.val);
+      if (currentNode.left) queue.push(currentNode.left);
+      if (currentNode.right) queue.push(currentNode.right);
+    }
+    return arr;
   }
 
   /** Further Study!
